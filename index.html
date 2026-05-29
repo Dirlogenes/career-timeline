@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; width: 100%; }
+  html, body { overflow: hidden; width: 100%; }
 
   body {
     background: #191919;
@@ -43,7 +43,6 @@
     position: relative;
     flex: 1;
     height: 44px;
-    overflow: hidden;
   }
 
   .year-grid-line {
@@ -238,7 +237,7 @@
 
 <h1>Experiência profissional</h1>
 
-<div class="chart">
+<div class="chart" style="padding-right: 52px;">
   <div class="rows" id="rows"></div>
   <div class="axis" id="axis"></div>
 </div>
@@ -249,6 +248,7 @@
 const START_YEAR = 2017;
 const END_YEAR   = 2026;
 const SPAN       = END_YEAR - START_YEAR;
+const SPAN_PAD   = SPAN + 0.3;
 
 const companies = [
 {
@@ -326,7 +326,7 @@ const companies = [
 ];
 
 function toFrac(ym) {
-  return (ym[0] + (ym[1] - 1) / 12 - START_YEAR) / SPAN;
+  return (ym[0] + (ym[1] - 1) / 12 - START_YEAR) / SPAN_PAD;
 }
 
 function duration(s, e) {
@@ -422,7 +422,7 @@ companies.forEach(c => {
   for (let y = START_YEAR; y <= END_YEAR; y++) {
     const gl = document.createElement("div");
     gl.className = "year-grid-line";
-    gl.style.left = ((y - START_YEAR) / SPAN * 100).toFixed(3) + "%";
+    gl.style.left = ((y - START_YEAR) / SPAN_PAD * 100).toFixed(3) + "%";
     track.appendChild(gl);
   }
 
@@ -466,14 +466,14 @@ for (let y = START_YEAR; y <= END_YEAR; y++) {
   const tick = document.createElement("div");
   tick.className = "axis-tick";
   tick.style.position = "absolute";
-  tick.style.left = ((y - START_YEAR) / SPAN * 100).toFixed(3) + "%";
+  tick.style.left = ((y - START_YEAR) / SPAN_PAD * 100).toFixed(3) + "%";
   tick.textContent = y;
   axisEl.appendChild(tick);
 }
 const lastTick = document.createElement("div");
 lastTick.className = "axis-tick";
 lastTick.style.position = "absolute";
-lastTick.style.left = "100%";
+lastTick.style.left = (SPAN / SPAN_PAD * 100).toFixed(3) + "%";
 lastTick.textContent = END_YEAR;
 axisEl.appendChild(lastTick);
 </script>
