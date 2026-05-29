@@ -7,13 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; width: 100%; }
 
   body {
-    background: #111210;
+    background: #191919;
     font-family: 'DM Sans', sans-serif;
     color: #e8e6e0;
     min-height: 100vh;
-    padding: 48px 40px 60px; min-width: 900px;
+    padding: 32px 24px 48px;
   }
 
   h1 {
@@ -42,6 +43,7 @@
     position: relative;
     flex: 1;
     height: 44px;
+    overflow: hidden;
   }
 
   .year-grid-line {
@@ -236,7 +238,7 @@
 
 <h1>Experiência profissional</h1>
 
-<div class="chart" style="min-width: 810px;">
+<div class="chart">
   <div class="rows" id="rows"></div>
   <div class="axis" id="axis"></div>
 </div>
